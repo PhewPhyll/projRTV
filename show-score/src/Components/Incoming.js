@@ -11,7 +11,7 @@ export default function Incoming() {
     const [replay, setReplay] = useState(true);
     // Placeholder text data, as if from API
     const placeholderText = [
-        { type: "heading1", text: "INCOMING" },
+        { type: "heading1", text: "INCOMING", color: "green"  },
     ];
 
     const container = {

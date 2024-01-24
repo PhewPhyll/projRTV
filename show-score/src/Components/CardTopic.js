@@ -5,13 +5,14 @@ import Typography from '@mui/material/Typography';
 
 
 function CardTopic({ Topic, index }) {
-    return (
-        <Card sx={{ borderRadius: '1rem', height: '100%', backgroundColor: `rgba(82 , 226 , 238 , ${0.4 / (index + 1)})` }} elevation={5}>
+    return ( //title card color
+        <Card sx={{ borderRadius: '1rem', height: '100%', backgroundColor: `rgba(225,149,0 , ${0.4 / (index + 1)})` }} elevation={5}>
             <CardContent sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '90%'
+                height: '90%',
+                color: 'black' //title collor
             }}>
                 <Typography  sx={{
                     overflow: "hidden",

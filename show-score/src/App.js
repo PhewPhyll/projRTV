@@ -13,11 +13,11 @@ import config from './config';
 import Wave from './Components/FooterWave/Wave';
 import { useNavigate } from 'react-router-dom'
 
-
 function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [topics, setTopics] = useState([])
   const navigate = useNavigate()
+
 
   useEffect(() => {
     let current_page = 1
@@ -55,6 +55,7 @@ function App() {
     backend.get('/topics_admin').then(res => {
       let topics = res.data.topics_to_send
       setTopics(topics.map(e => e.title))
+      console.log(topics)
     })
 
     const es = new ReconnectingEventSource(config.apiUrlPrefix + '/sse');
@@ -82,26 +83,27 @@ function App() {
 
 
   return (
-
+    <div style={{ backgroundColor: '#f0f0f0' }}>
     <Container maxWidth="xl">
       <Box sx={{
         display: 'grid',
         gridTemplateRows: '100px 1fr 1fr',
         width: '100%',
         height: '90vh',
-        gap: '1rem'
+        gap: '1rem',
+        color: ""
       }}>
         <Box sx={{ width : '100%', textAlign : 'center' , mt : '2rem' }}>
           <Incoming />
         </Box>
-        <Card  elevation={5} sx={{
+        <Card  elevation={5} sx={{ //card three-dot
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
-          borderRadius : '1rem'
+          borderRadius : '1rem',
         }}>
           {inComingLst.length === 0 ? <Loading /> :
             <Grid container columns={12} spacing={1} alignItems="center" justifyContent='center'>
@@ -114,7 +116,7 @@ function App() {
             </Grid>
           }
         </Card>
-        <Card elevation={5} sx={{
+        <Card elevation={5} sx={{ //background title-box 
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -160,9 +162,11 @@ function App() {
         position : 'absolute',
         right : 30,
         bottom : 30
-      }} variant='text' onClick={() => navigate('/vote')}>Next</Button>
-    </Container>
+      }} variant='text' onClick={() => navigate('/vote')}>Next</Button> 
+    </Container> //next button
+  </div>
   );
+  
 }
 
 export default App;

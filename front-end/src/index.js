@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Votepage from './Components/Vote/Votepage';
+import NavBar from './components/Navbar/Navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const theme = false;
+
+const themeDark = createTheme({
+  palette: {
+    mode : 'dark',
+    primary: {
+      main: '#fff'
+    },
+    secondary: {
+      main : '#52cfe3'
+    }
+  },
+  typography: {
+    fontFamily: 'Pridi, serif'
+  },
+})
 
 const themeLight = createTheme({
   palette: {
@@ -15,7 +32,7 @@ const themeLight = createTheme({
       main: '#fff'
     },
     secondary: {
-      main: '#FF0000' //color heading
+      main: '#52cfe3'
     }
   },
   typography: {
@@ -24,17 +41,14 @@ const themeLight = createTheme({
 })
 
 root.render(
-  <ThemeProvider theme={themeLight}>
+  <ThemeProvider theme={ !theme ? themeLight : themeDark}>
     <React.StrictMode>
-      <BrowserRouter basename="/dashboard">
-        <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/vote' element={<Votepage />} />
-        </Routes>
-      </BrowserRouter>
+      <div>
+        <NavBar/>
+        <App />
+      </div>
     </React.StrictMode>
   </ThemeProvider>
-
 );
 
 // If you want to start measuring performance in your app, pass a function
